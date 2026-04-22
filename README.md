@@ -82,7 +82,7 @@ Edita `%APPDATA%\Claude\claude_desktop_config.json` y añade dentro de `mcpServe
   "mcpServers": {
     "claude-sap-notes": {
       "command": "node",
-      "args": ["C:\\xampp\\htdocs\\www\\claude-sap-notes\\src\\index.js"],
+      "args": ["C:\\Utils\\claude-sap-notes\\src\\index.js"],
       "env": {
         "SAP_USER": "nombre.apellido@claude.com",
         "SAP_PASS": "********"
@@ -107,7 +107,7 @@ Reinicia Claude Desktop. Deberías ver las tres tools en el icono de herramienta
 ## Configuración en Claude Code (CLI, opcional)
 
 ```powershell
-claude mcp add claude-sap-notes -- node "C:\xampp\htdocs\www\claude-sap-notes\src\index.js"
+claude mcp add claude-sap-notes -- node "C:\Utils\claude-sap-notes\src\index.js"
 ```
 
 Luego dentro de Claude Code: `/mcp` para confirmar que aparece conectado.
