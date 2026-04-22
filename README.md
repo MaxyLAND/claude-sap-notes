@@ -94,8 +94,9 @@ Edita `%APPDATA%\Claude\claude_desktop_config.json` y añade dentro de `mcpServe
 
 Si no encuentras el archivo de configuración, ejecuta el siguiente comando en PowerShell: 
 ```powershell
-Get-ChildItem -Path C:\ -Filter "claude_desktop_config.json" -Recurse -ErrorAction SilentlyContinue
+et-ChildItem -Path "$env:LOCALAPPDATA" -Filter "claude_desktop_config.json" -Recurse -ErrorAction SilentlyContinue
 ```
+> Debería aparecerte el archivo dentro de una carpeta llamada "Claude", sin "-3p" ni otras extensiones.
 
 Reinicia Claude Desktop. Deberías ver las tres tools en el icono de herramientas.
 
