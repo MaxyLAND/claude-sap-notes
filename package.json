@@ -1,6 +1,6 @@
 {
   "name": "claude-sap-notes-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server that logs into me.sap.com headlessly and exposes SAP Notes search/read tools to Claude.",
   "type": "module",
   "main": "src/index.js",
