@@ -1,0 +1,22 @@
+{
+  "name": "claude-sap",
+  "owner": {
+    "name": "MaxyLAND"
+  },
+  "description": "claude SAP tooling for Claude Code / Cowork.",
+  "plugins": [
+    {
+      "name": "claude-sap-notes",
+      "source": "./",
+      "description": "Busca y lee notas SAP desde me.sap.com (Universal ID, sin MFA). Incluye prompt de investigación profunda multi-nota.",
+      "version": "0.1.0",
+      "author": {
+        "name": "MaxyLAND"
+      },
+      "homepage": "https://github.com/MaxyLAND/claude-sap-notes",
+      "keywords": ["MaxyLAND", "sap", "sap-notes", "me.sap.com", "mcp", "playwright"],
+      "category": "productivity",
+      "strict": false
+    }
+  ]
+}

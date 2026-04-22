@@ -1,0 +1,24 @@
+{
+  "name": "claude-sap-notes-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that logs into me.sap.com headlessly and exposes SAP Notes search/read tools to Claude.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "claude-sap-notes-mcp": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "postinstall": "playwright install chromium",
+    "login": "node src/login.js",
+    "test:note": "node src/cli-test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.49.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

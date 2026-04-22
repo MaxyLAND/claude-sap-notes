@@ -1,0 +1,9 @@
+node_modules/
+.env
+storage-state.json
+*.log
+.cache/
+login-debug.*
+search-debug.*
+note-debug.*
+

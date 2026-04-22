@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "claude-sap-notes": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/src/index.js"],
+      "env": {
+        "SAP_STORAGE_STATE": "${CLAUDE_PLUGIN_ROOT}/storage-state.json"
+      }
+    }
+  }
+}

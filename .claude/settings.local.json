@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-sap-notes__sap_note_get",
+      "mcp__claude-sap-notes__sap_notes_search"
+    ]
+  }
+}
