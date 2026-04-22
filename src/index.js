@@ -12,8 +12,8 @@ if (!process.env.SAP_STORAGE_STATE) {
 
 const CREDS_MISSING = !process.env.SAP_USER || !process.env.SAP_PASS;
 const CREDS_MISSING_MSG =
-  'Credenciales SAP no configuradas. Ejecuta el slash command `/sap-setup` en Claude Code ' +
-  'para configurarlas (o rellena `SAP_USER` y `SAP_PASS` en el archivo `.env` del plugin y reinicia).';
+  'Credenciales SAP no configuradas. Rellena `SAP_USER` y `SAP_PASS` en el archivo `.env` del proyecto ' +
+  '(o en el bloque `env` del claude_desktop_config.json) y reinicia Claude.';
 
 import { readFileSync } from 'node:fs';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -313,7 +313,7 @@ console.error('[claude-sap-notes] MCP server ready');
 // Prelaunch Chromium + reuse storage session in the background so the first
 // tool call doesn't pay the cold start. If this fails, tool calls will retry.
 if (CREDS_MISSING) {
-  console.error('[claude-sap-notes] SAP_USER/SAP_PASS not set. Skipping warmup. Run /sap-setup in Claude Code.');
+  console.error('[claude-sap-notes] SAP_USER/SAP_PASS not set in .env. Skipping warmup.');
 } else {
   sap
     .ensureLoggedIn()

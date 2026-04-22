@@ -99,37 +99,6 @@ claude mcp add claude-sap-notes -- node "C:\xampp\htdocs\www\claude-sap-notes\sr
 
 Luego dentro de Claude Code: `/mcp` para confirmar que aparece conectado.
 
-## Instalación como plugin de Claude Code / Cowork (marketplace)
-
-Este repo se autodescribe como marketplace de plugins. Una vez publicado en GitHub, cualquier
-usuario (dentro de la organización) puede añadirlo con dos comandos desde Claude Code:
-
-```
-/plugin marketplace add claude/claude-sap-notes
-/plugin install claude-sap-notes@claude-sap
-```
-
-El plugin registra el MCP server vía `.mcp.json` usando `${CLAUDE_PLUGIN_ROOT}` — no hay que
-tocar rutas absolutas. Tras instalarlo:
-
-1. Desde dentro de Claude Code ejecuta `/sap-setup`. El slash command te pide credenciales
-   SAP Universal ID, escribe `.env` en el plugin root, corre `npm install` si falta
-   `node_modules/` (baja Chromium) y ejecuta `npm run login` para cachear `storage-state.json`.
-2. Reinicia Claude Code. El MCP arranca y expone las tools + prompts `/sap-notes-help`
-   y `/sap-notes-research`.
-
-> El arranque del MCP también auto-instala dependencias si detecta `node_modules/` ausente
-> (ver `src/bootstrap.js`). `/sap-setup` sigue siendo necesario la primera vez para capturar
-> las credenciales, que nunca se versionan en el repo.
-
-Archivos que hacen posible la instalación como plugin:
-
-- `.claude-plugin/marketplace.json` — declara el marketplace y lista los plugins.
-- `.claude-plugin/plugin.json` — metadatos del plugin.
-- `.mcp.json` — arranca el MCP server con la ruta resuelta desde `${CLAUDE_PLUGIN_ROOT}`.
-- `src/bootstrap.js` — wrapper que auto-instala deps antes de arrancar el MCP.
-- `commands/sap-setup.md` — slash command guiado para capturar credenciales y loguear.
-
 ## Cómo lo usa Claude
 
 Las descripciones de las tools ya están en español y disparan con frases típicas:
