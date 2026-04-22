@@ -40,8 +40,15 @@ claude-sap-notes/
 
 Requisitos: Node 18+, conexión a me.sap.com desde la máquina.
 
+Clona el repositorio en local usando git, por ejemplo:
 ```powershell
-cd C:\xampp\htdocs\www\claude-sap-notes
+cd C:\Utils\
+git clone https://github.com/MaxyLAND/claude-sap-notes
+```
+
+Instala los packages necesarios dentro del repositorio clonado:
+
+```powershell
 npm install
 # postinstall descarga Chromium (~150 MB) para Playwright
 ```
@@ -85,13 +92,18 @@ Edita `%APPDATA%\Claude\claude_desktop_config.json` y añade dentro de `mcpServe
 }
 ```
 
+Si no encuentras el archivo de configuración, ejecuta el siguiente comando en PowerShell: 
+```powershell
+Get-ChildItem -Path C:\ -Filter "claude_desktop_config.json" -Recurse -ErrorAction SilentlyContinue
+```
+
 Reinicia Claude Desktop. Deberías ver las tres tools en el icono de herramientas.
 
 > Alternativa: deja las credenciales en el `.env` y omite el bloque `env` — `dotenv`
 > las carga desde el cwd del proceso. Si usas el `env` del config JSON, Claude Desktop
 > tiene prioridad sobre `.env`.
 
-## Configuración en Claude Code (CLI)
+## Configuración en Claude Code (CLI, opcional)
 
 ```powershell
 claude mcp add claude-sap-notes -- node "C:\xampp\htdocs\www\claude-sap-notes\src\index.js"
