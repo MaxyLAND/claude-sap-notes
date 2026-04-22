@@ -190,7 +190,7 @@ const TOOLS = [
   {
     name: 'sap_notes_search',
     description:
-      'Busca notas SAP en me.sap.com por términos/palabras clave. Por defecto incluye contenido resumido de cada nota y URLs clickables. Úsalo cuando el usuario diga "busca en sap notes", "busca en notas de sap" seguido de uno o más términos. Para investigaciones profundas (usuario pide "investiga", "profundo", "todas las soluciones", error complejo), sigue el prompt `sap-notes-research`: si la consulta es vaga (falta producto+versión, código de error exacto, transacción/módulo o qué se probó) pide esos datos ANTES de buscar; con info suficiente lanza 3-6 variantes de búsqueda, llama `sap_note_get` en las candidatas, sigue la cadena de notas referenciadas y sintetiza causa raíz + solución oficial + SP/patch + workarounds + KBAs relacionadas.',
+      'Busca notas SAP en me.sap.com por términos/palabras clave. Por defecto incluye contenido resumido de cada nota y URLs clickables. Úsalo directamente cuando el usuario diga "busca en sap notes", "busca en notas de sap" seguido de términos. NO pidas aclaraciones antes de buscar — lanza la búsqueda con los términos que te da el usuario y devuelve resultados. Si no hay hits, prueba 1-2 variantes obvias (ej. traducir a inglés, añadir comillas al código de error) antes de reportar sin resultados. Solo cuando el usuario invoque explícitamente el prompt `sap-notes-research` o pida "investigación profunda" sigue el workflow de clarificación + multi-query.',
     inputSchema: {
       type: 'object',
       properties: {
