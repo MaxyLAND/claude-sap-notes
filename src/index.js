@@ -10,6 +10,11 @@ if (!process.env.SAP_STORAGE_STATE) {
   process.env.SAP_STORAGE_STATE = resolve(PROJECT_ROOT, 'storage-state.json');
 }
 
+const CREDS_MISSING = !process.env.SAP_USER || !process.env.SAP_PASS;
+const CREDS_MISSING_MSG =
+  'Credenciales SAP no configuradas. Ejecuta el slash command `/sap-setup` en Claude Code ' +
+  'para configurarlas (o rellena `SAP_USER` y `SAP_PASS` en el archivo `.env` del plugin y reinicia).';
+
 import { readFileSync } from 'node:fs';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -218,6 +223,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: TOOLS }))
 
 server.setRequestHandler(CallToolRequestSchema, async (req) => {
   const { name, arguments: args = {} } = req.params;
+  if (CREDS_MISSING) {
+    return {
+      isError: true,
+      content: [{ type: 'text', text: CREDS_MISSING_MSG }],
+    };
+  }
   try {
     if (name === 'sap_note_get') {
       const data = await sap.fetchNote(args.note_id);
@@ -301,7 +312,11 @@ console.error('[claude-sap-notes] MCP server ready');
 
 // Prelaunch Chromium + reuse storage session in the background so the first
 // tool call doesn't pay the cold start. If this fails, tool calls will retry.
-sap
-  .ensureLoggedIn()
-  .then(() => console.error('[claude-sap-notes] session warm'))
-  .catch((err) => console.error('[claude-sap-notes] warmup failed:', err?.message || err));
+if (CREDS_MISSING) {
+  console.error('[claude-sap-notes] SAP_USER/SAP_PASS not set. Skipping warmup. Run /sap-setup in Claude Code.');
+} else {
+  sap
+    .ensureLoggedIn()
+    .then(() => console.error('[claude-sap-notes] session warm'))
+    .catch((err) => console.error('[claude-sap-notes] warmup failed:', err?.message || err));
+}
