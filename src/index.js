@@ -40,7 +40,7 @@ function loadUsage() {
 const sap = new SapClient();
 
 const server = new Server(
-  { name: 'claude-sap-notes', version: '0.1.0' },
+  { name: 'claude-sap-notes', version: '0.1.1' },
   { capabilities: { tools: {}, resources: {}, prompts: {} } }
 );
 
